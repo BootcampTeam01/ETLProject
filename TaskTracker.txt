@@ -1,0 +1,22 @@
+Extract:
+Reviewed Kaggle for interesting datasets 
+Focused on baseball datasets
+Decided to use https://www.kaggle.com/open-source-sports/baseball-databank
+Dataset included 23 different .csv files with data on baseball players, teams, and games from 1871 to 2015
+Found there's a difference between years active (retire date - debut date) as players
+do not play their total careers in the major leagues.
+Salary information only available from 1985 forward.
+Removed all data from pre-1985
+
+Extract2:
+Reviewed the mlb.com webpage for scraping opportunities
+Set up Splinter to scrape team batting page
+
+Transform:
+For the baseball .csv files, we cleaned to remove data we were not going to use
+
+Load:
+Created etlprojectdb schema in MySQL
+Loaded baseball .csv files into MySQL and joined the data to create a player snapshot: name, birthdate,
+when they started, salary, etc.
+
