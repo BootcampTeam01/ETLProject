@@ -1,22 +1,49 @@
+Data Analytics Bootcamp: ETL Project
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Date: 1/10/2019
+Members: Christopher Brady, David Rodas, Ray Zhang
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary: For our ETL project, we chose to compile data about Major League Baseball (MLB).
+------------------------------------------------------------------------------------------------------------------------------------------------------
 Extract:
-Reviewed Kaggle for interesting datasets 
-Focused on baseball datasets
-Decided to use https://www.kaggle.com/open-source-sports/baseball-databank
-Dataset included 23 different .csv files with data on baseball players, teams, and games from 1871 to 2015
-Found there's a difference between years active (retire date - debut date) as players
-do not play their total careers in the major leagues.
-Salary information only available from 1985 forward.
-Removed all data from pre-1985
+To find our data, we reviewed Kaggle to look for interesting datasets about baseball.
+
+We decided to use the dataset here:
+https://www.kaggle.com/open-source-sports/baseball-databank
+
+The dataset included 23 different .csv files with data on players, teams, and games from 1871 to 2015.
+
+We downloaded three relevant .csv files about:
+- Players' personal information (dates of birth, years active, etc.)
+- Players' yearly salary information throughout their MLB careers
+- Players' game performance information, including number of games played per year
+
+We then extracted the data from the .csv files into Pandas dataframes for cleaning and transformation.
 
 Extract2:
 Reviewed the mlb.com webpage for scraping opportunities
 Set up Splinter to scrape team batting page
-
+------------------------------------------------------------------------------------------------------------------------------------------------------
 Transform:
-For the baseball .csv files, we cleaned to remove data we were not going to use
+To clean the .csv data, we created new dataframes with only the columns containing data relevant to
+our project. In addition, we dropped rows containing old very data (from pre-1985), because salary
+information was only available from 1985 forward.
 
+We also created some new columns by calculating the sums and counts of existing columns' data. For
+example, in the salaries dataframe, we counted the number of times a player's yearly salary was listed
+to determine their number of seasons played in the major league.
+
+During this process, we discovered that there was a difference between players' total number of years
+active (retire date - debut date) and their number of MLB seasons. Looking into this, we learned that
+players do not always play in the major leagues throughout their baseball careers.
+
+Finally, we applied some currency formatting to the salary data.
+------------------------------------------------------------------------------------------------------------------------------------------------------
 Load:
-Created etlprojectdb schema in MySQL
-Loaded baseball .csv files into MySQL and joined the data to create a player snapshot: name, birthdate,
-when they started, salary, etc.
+Due to the .csv files' existing table structure, we decided to load the final dataset in SQL.
 
+We created the "etlprojectdb" schema in MySQL, then used SQLAlchemy to load the dataframes containing
+the .csv files' data into MySQL.
+
+Then, we joined the data to create a final dataset that showcases a player snapshot: name, date of birth,
+debut date, salary, etc.
