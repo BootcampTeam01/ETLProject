@@ -47,3 +47,22 @@ the .csv files' data into MySQL.
 
 Then, we joined the data to create a final dataset that showcases a player snapshot: name, date of birth,
 debut date, salary, etc.
+
+
+MLB Scrape and load to Mongo
+For the project we wanted to get some recent data that we could extract through a web scrap.
+ 
+
+We created a loop to scrape through the players statistics. These statistic could be useful to help a person place bets on a certain game, or player.
+
+The stats that were scraped include name, position, games played, hits among others.
+
+Extract:
+
+http://mlb.mlb.com/stats/sortable.jsp
+
+The loop scrapes a the page based on a team you select. So you can scrape one team or various team.
+
+Once we have the data scraped, which comes out as a list of dictionaries. We transformed the list into a json file. Then this file is loaded into a database within Mongo.
+
+The database that was created is Giants_db, with the collection "Players".
